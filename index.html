@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    <link href="./css/3p.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Play:400,700&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+  </head>
+  <body ng-app="test_minefield/ui" ng-controller="FrameController">
+    <body>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <md-button aria-label="Settings" class="md-icon-button">
+            <md-icon md-svg-icon="/img/icons/menu.svg"></md-icon>
+          </md-button>
+          <h2><span>Toolbar with Icon Buttons {{ greeting }}</span></h2>
+        </div>
+      </md-toolbar>
+      <md-content>
+        <div layout="row" layout-wrap>
+          <div flex="33" ng-repeat="cell in matrix" ng-click="cell.click()">{{ cell.display }}
+            <cell cell="cell"></cell>
+          </div>
+        </div>
+        <md-button ng-click="toggleEditable()" class="md-raised">{{ editable ? 'Calculate' : 'Edit' }}</md-button>
+      </md-content>
+    </body>
+  </body>
+</html>
+<script src="./js/3p.js"></script>
+<script src="./js/ui.js"></script>

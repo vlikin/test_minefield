@@ -1,0 +1,29 @@
+{
+  "name": "test_minefield",
+  "version": "0.0.0",
+  "description": "The test project.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vlikin/test_minefield.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/vlikin/test_minefield/issues"
+  },
+  "dependencies": {
+    "bower": "~1.5.2",
+    "gulp": "~3.9.0",
+    "gulp-plumber": "~1.0.1",
+    "gulp-sourcemaps": "~1.5.2",
+    "gulp-concat": "~2.6.0",
+    "gulp-uglify": "~1.4.1",
+    "gulp-jade": "~1.1.0",
+    "browser-sync": "~2.9.5",
+    "gulp-sass": "~2.0.4"
+  }
+}

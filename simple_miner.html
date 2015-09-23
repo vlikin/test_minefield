@@ -1,0 +1,128 @@
+<script language="JavaScript">
+  var input = "3 4\n"
+    +"*...\n"
+    +"..*.\n"
+    +"....\n";
+
+
+function Miner(str) {
+  this.list = [];
+  this.mine_list = [];
+  this.row = 0;
+  this.cols = 0;
+
+  this.parseString = function(str) {
+    var lines = str.split('\n');
+    var line_parts = lines[0].split(' ');
+    this.rows = parseInt(line_parts[0]),
+    this.cols = parseInt(line_parts[1]);
+    this.list = [];
+    for (var row_index = 1; row_index < this.rows + 1; row_index++) {
+      for (var col_index = 0; col_index < this.cols; col_index++) {
+        this.list.push(lines[row_index][col_index]);
+      }
+    }
+  }
+
+  this.go_arround = function(list, pos, cols, rows) {
+    var pos = parseInt(pos);
+    var el = list[pos];
+    var rules = {
+      l: !(pos % cols == 0),
+      r: !(pos + 1 % cols == 0),
+      t: !(Math.floor(pos / cols) == 0),
+      b: !(Math.ceil(pos / cols) == rows)
+    }
+
+    var map = [
+      {
+        shift: -(cols + 1),
+        rules: ['t', 'l'],
+      },
+      {
+        shift: -cols ,
+        rules: ['t'],
+      },
+      {
+        shift: -(cols - 1),
+        rules: ['t', 'r'],
+      },
+      {
+        shift: -1,
+        rules: ['l'],
+      },
+      {
+        shift: 1 ,
+        rules: ['r'],
+      },
+      {
+        shift: cols - 1,
+        rules: ['l', 'b'],
+      },
+      {
+        shift: cols,
+        rules: ['b'],
+      },
+      {
+        shift: cols + 1,
+        rules: ['r', 'b'],
+      }
+    ];
+
+    var mine_number = 0;
+    for (var block_index in map) {
+      var block = map[block_index];
+      var to_continue = true;
+      for (var rule_index in block.rules) {
+        var rule_key = block.rules[rule_index];
+        to_continue = to_continue && rules[rule_key];
+        if (!to_continue) {
+          break;
+        }
+      }
+      var shif = pos + block.shift;
+      var inner = list[pos + block.shift];
+      if (to_continue) {
+        if (inner == '*') {
+          mine_number++;
+        }
+      }
+    }
+
+    return mine_number;
+  }
+
+  this.process = function() {
+    this.mine_list = [];
+    for (var index in this.list) {
+      var inner = this.list[index];
+      if (inner == '*') {
+        this.mine_list.push('*');
+      }
+      else {
+        var mine_number = this.go_arround(this.list, index, this.cols, this.rows);
+        this.mine_list.push(mine_number);
+      }
+    }
+  }
+
+  this.toString = function() {
+    var str = '';
+    for (var index in this.mine_list) {
+      var str = str + this.mine_list[index];
+      if ((parseInt(index) + 1) % this.cols == 0) {
+        str = str + '\n'
+      }
+    }
+
+    return str;
+  }
+
+  this.parseString(str);
+
+}
+
+  var miner = new Miner(input);
+  miner.process();
+  console.log(miner.toString());
+</script>

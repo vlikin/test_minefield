@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(
+      name="viewport"
+      content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"
+    )
+    title= pageTitle
+
+    block css
+      link(href='./css/3p.css', rel='stylesheet')
+      link(href='./css/style.css', rel='stylesheet')
+      link(href='https://fonts.googleapis.com/css?family=Play:400,700&subset=latin,cyrillic', rel='stylesheet', type='text/css')
+
+
+  body(ng-app='test_minefield/ui' ng-controller='FrameController')
+    block body
+      Body place
+
+block script
+  script(src='./js/3p.js')
+  script(src='./js/ui.js')

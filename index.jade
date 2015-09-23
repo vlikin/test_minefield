@@ -1,0 +1,17 @@
+extends jade/layout
+
+block body
+  body
+    md-toolbar
+      div(class="md-toolbar-tools")
+        md-button(class="md-icon-button" aria-label="Settings")
+          md-icon(md-svg-icon="/img/icons/menu.svg")
+        h2
+          span Toolbar with Icon Buttons {{ greeting }}
+
+    md-content
+      div(layout="row" layout-wrap)
+        div(flex=33 ng-repeat="cell in matrix" ng-click="cell.click()" ) {{ cell.display }}
+          cell(cell="cell")
+
+      md-button(class="md-raised" ng-click="toggleEditable()") {{ editable ? 'Calculate' : 'Edit' }}
